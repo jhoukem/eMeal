@@ -1,0 +1,11 @@
+product_homepage:
+    path:     /
+    defaults: { _controller: ProductBundle:Default:index }
+    
+product_menu:
+    path:     /menu
+    defaults: { _controller: ProductBundle:Default:menu }
+    
+product_basket:
+    path:     /basket
+    defaults: { _controller: ProductBundle:Default:basket }

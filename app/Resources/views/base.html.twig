@@ -3,10 +3,13 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        {% block stylesheets %}
+         <link rel="stylesheet" type="text/css" href="{{ asset('bootstrap-3.3.7-dist/css/bootstrap.min.css') }}"> 
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('eMeal.png') }}" />
     </head>
     <body>
+        {{ include("::navbar.html.twig") }}
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
