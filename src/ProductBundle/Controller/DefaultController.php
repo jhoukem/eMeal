@@ -13,6 +13,11 @@ class DefaultController extends Controller
     
     public function menuAction()
     {
+        
+        
+        
+        
+        
         return $this->render('ProductBundle:Default:menu.html.twig');
     }
     
