@@ -9,3 +9,15 @@ product_menu:
 product_basket:
     path:     /basket
     defaults: { _controller: ProductBundle:Default:basket }
+    
+product_add:
+    path:     /add_product
+    defaults: { _controller: ProductBundle:Default:addProduct }
+    
+category_add:
+    path:     /add_category
+    defaults: { _controller: ProductBundle:Default:addCategory }
+    
+ingredient_add:
+    path:     /add_ingredient
+    defaults: { _controller: ProductBundle:Default:addIngredient }

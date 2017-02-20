@@ -36,9 +36,15 @@ class Product
     private $price;
     
     /**
-     * @ORM\OneToOne(targetEntity="ProductBundle\Entity\Category", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="ProductBundle\Entity\Category", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
      */
     private $category;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="ProductBundle\Entity\Ingredient", cascade={"persist"})
+     */
+    private $ingredients;
     
 
     /**
@@ -106,7 +112,7 @@ class Product
      *
      * @return Product
      */
-    public function setCategory(\ProductBundle\Entity\Category $category = null)
+    public function setCategory(\ProductBundle\Entity\Category $category)
     {
         $this->category = $category;
 
@@ -121,5 +127,46 @@ class Product
     public function getCategory()
     {
         return $this->category;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->ingredients = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add ingredient
+     *
+     * @param \ProductBundle\Entity\Ingredient $ingredient
+     *
+     * @return Product
+     */
+    public function addIngredient(\ProductBundle\Entity\Ingredient $ingredient)
+    {
+        $this->ingredients[] = $ingredient;
+
+        return $this;
+    }
+
+    /**
+     * Remove ingredient
+     *
+     * @param \ProductBundle\Entity\Ingredient $ingredient
+     */
+    public function removeIngredient(\ProductBundle\Entity\Ingredient $ingredient)
+    {
+        $this->ingredients->removeElement($ingredient);
+    }
+
+    /**
+     * Get ingredients
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getIngredients()
+    {
+        return $this->ingredients;
     }
 }

@@ -2,6 +2,22 @@
 
 {%block body %}
 
-The day menu is :
+<p>The day menu :</p>
 
+{% for product in listProducts %}
+    <li>
+        {{ product.category.name}} {{ product.name }}:  {{ product.price }} dollars. 
+        
+        {%if product.ingredients is not empty%}
+        (
+        {%for ingredient in product.ingredients %}
+            {{  ingredient.name }}
+            {% if not loop.last %}
+            ,
+            {% endif %}
+        {% endfor %}
+        )       
+        {% endif %}
+    </li>
+{% endfor %}
 {% endblock %}
