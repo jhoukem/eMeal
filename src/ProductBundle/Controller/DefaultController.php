@@ -34,10 +34,33 @@ class DefaultController extends Controller
                     ));
     }
     
-    public function basketAction()
+    public function addToBasketAction($id, Request $request)
     {
+        $session = $request->getSession();
         
-        return $this->render('ProductBundle:Default:basket.html.twig');
+        if (!$session->has('basket')) {
+            $session->set('basket', array());
+        }
+        $basket = $session->get('basket');
+        if (!array_key_exists($id, $basket)) {
+            $basket[$id] = 0;
+        }
+        $basket[$id] = $basket[$id] + 1;
+        $session->set('basket', $basket);
+        return $this->render('ProductBundle:Default:basket.html.twig',
+                array('basket' => $session->get('basket')));
+    }
+    
+    public function basketAction(Request $request)
+    {
+        $session = $request->getSession();
+        if (!$session->has('basket')) {
+            $session->set('basket', array());
+        }
+        $basket = $session->get('basket');
+        
+        return $this->render('ProductBundle:Default:basket.html.twig',
+                array('basket' => $basket));
     }
     
     

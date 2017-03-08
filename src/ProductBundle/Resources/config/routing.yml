@@ -21,3 +21,9 @@ category_add:
 ingredient_add:
     path:     /add_ingredient
     defaults: { _controller: ProductBundle:Default:addIngredient }
+        
+basket_add:
+    path:     /add_to_basket/{id}
+    defaults: { _controller: ProductBundle:Default:addToBasket }
+    requirements:
+        id: \d+

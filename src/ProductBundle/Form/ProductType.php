@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Bridge\Doctrine\Form\Type\CheckboxType;
 
 class ProductType extends AbstractType
 {
@@ -29,6 +30,7 @@ class ProductType extends AbstractType
                 'class' => 'ProductBundle:Ingredient',
                 'choice_label' => 'name',
                 'multiple'     => true,
+                'expanded' => true,    
                 ))
                 ->add('save', SubmitType::class);
     }

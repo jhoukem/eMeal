@@ -1,7 +1,12 @@
 {% extends "::base.html.twig" %}
 
-{%block body %}
-
+{% block body %}
+    
 This is your basket :
-
+    <ul>
+    {% for product, quantity in basket %}
+        <li> {{ product }} / {{ quantity }}</li>
+    {% endfor %}
+    </ul>
 {% endblock %}
+

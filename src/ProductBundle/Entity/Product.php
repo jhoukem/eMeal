@@ -36,7 +36,7 @@ class Product
     private $price;
     
     /**
-     * @ORM\OneToMany(targetEntity="ProductBundle\Entity\Category", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="ProductBundle\Entity\Category", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;

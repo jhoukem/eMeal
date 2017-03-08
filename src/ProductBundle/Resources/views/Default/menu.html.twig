@@ -6,7 +6,7 @@
 
 {% for product in listProducts %}
     <li>
-        {{ product.category.name}} {{ product.name }}:  {{ product.price }} dollars. 
+        {{ product.category.name }} {{ product.name }}:  {{ product.price }} dollars. 
         
         {%if product.ingredients is not empty%}
         (
@@ -17,7 +17,12 @@
             {% endif %}
         {% endfor %}
         )       
-        {% endif %}
+        {% endif %}       
+        <a class='basket_add btn btn-primary' href="{{ path('basket_add', { 'id':product.id }) }}">Add to basket</a>
     </li>
 {% endfor %}
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('basket.js') }}"></script>
 {% endblock %}
