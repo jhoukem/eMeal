@@ -47,6 +47,17 @@ class DefaultController extends Controller
         }
         $basket[$id] = $basket[$id] + 1;
         $session->set('basket', $basket);
+        
+        
+        
+        $product_repository = $this
+                      ->getDoctrine()
+                      ->getManager()
+                      ->getRepository('ProductBundle:Product');
+
+        $listProducts = $product_repository->findById($id);
+        
+        
         return $this->render('ProductBundle:Default:basket.html.twig',
                 array('basket' => $session->get('basket')));
     }
