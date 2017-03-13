@@ -33,6 +33,20 @@ class DefaultController extends Controller
                 array('listProducts' => $listProducts
                     ));
     }
+
+    public function viewAction()
+    {
+        $product_repository = $this
+                      ->getDoctrine()
+                      ->getManager()
+                      ->getRepository('ProductBundle:Product');
+
+        $listProducts = $product_repository->findAll();
+             
+        return $this->render('ProductBundle:Default:view.html.twig',
+                array('listProducts' => $listProducts
+                    ));
+    }
     
     public function addToBasketAction($id, Request $request)
     {

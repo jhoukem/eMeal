@@ -4,18 +4,16 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
+    {# On charge le CSS de bootstrap depuis le site directement #}
          <link rel="stylesheet" type="text/css" href="{{ asset('bootstrap-3.3.7-dist/css/bootstrap.min.css') }}"> 
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('eMeal.png') }}" />
     </head>
     <body>
-        {{ include("::navbar.html.twig") }}
-        {% block body %}{% endblock %}
-        {% block javascripts %}
-         <!-- jQuery 3.1.1 -->
-            <script src="{{ asset('bootstrap-3.3.7-dist/jQuery/jquery-3.1.1.min.js') }}"></script>
-            <!-- Bootstrap 3.3.7 -->
-            <script src="{{ asset('bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>
+        {% block body %}
         {% endblock %}
-    </body>
+        {% block javascripts %}
+        {% endblock %}
+ 
+</body>
 </html>

@@ -1,8 +1,4 @@
-
-{% extends "::layout.html.twig" %}
-
-{%block body %}
-
+<ul class="nav nav-pills nav-stacked">
 <p>The day menu :</p>
 
 {% for product in listProducts %}
@@ -22,4 +18,4 @@
         <a class='basket_add btn btn-primary' href="{{ path('basket_add', { 'id':product.id }) }}">Add to basket</a>
     </li>
 {% endfor %}
-{% endblock %}
+</ul>

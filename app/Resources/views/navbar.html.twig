@@ -1,4 +1,5 @@
-<nav class="navbar navbar-default">
+
+<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -16,6 +17,8 @@
             <ul class="nav navbar-nav">
                 <li id='nav-btn-menu'><a href="{{ path('product_menu') }}">Menu</a></li>
                 <li id='nav-btn-basket'><a href="{{ path('product_basket') }}">Basket</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
                 <li id='nav-btn-login'><a href="{{ path('fos_user_security_login') }}">Log in</a></li>
                 <li id='nav-btn-sign-in'><a href="{{ path('fos_user_registration_register') }}">Sign in</a></li> 
             </ul>
