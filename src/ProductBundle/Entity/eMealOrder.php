@@ -144,5 +144,17 @@ class eMealOrder
         
         return $price;
     }
+    
+     public function toString()
+     {
+         $output = "Order: ";
+         //$output += date;
+        foreach($this->getProductsList() as $product) {
+            $output += $product->getName();
+
+        }
+         
+         return $output;
+     }
 }
 

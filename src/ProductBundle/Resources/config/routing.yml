@@ -8,7 +8,7 @@ product_menu:
     
 product_basket:
     path:     /basket
-    defaults: { _controller: ProductBundle:Default:basket }
+    defaults: { _controller: ProductBundle:Basket:basket }
     
 product_add:
     path:     /add_product
@@ -24,6 +24,15 @@ ingredient_add:
         
 basket_add:
     path:     /add_to_basket/{id}
-    defaults: { _controller: ProductBundle:Default:addToBasket }
+    defaults: { _controller: ProductBundle:Basket:addToBasket }
     requirements:
         id: \d+
+
+emeal_order:
+    path:     /order
+    defaults: { _controller: ProductBundle:Order:myOrder }
+    
+emeal_order_add:
+    path:     /order_add
+    defaults: { _controller: ProductBundle:Order:orderAdd }
+        

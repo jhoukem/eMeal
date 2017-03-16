@@ -15,6 +15,7 @@ use ProductBundle\Entity\Ingredient;
 
 class DefaultController extends Controller
 {
+    
     public function indexAction()
     {
         return $this->render('ProductBundle:Default:index.html.twig');
@@ -47,48 +48,7 @@ class DefaultController extends Controller
                 array('listProducts' => $listProducts
                     ));
     }
-    
-    public function addToBasketAction($id, Request $request)
-    {
-        $session = $request->getSession();
-        
-        if (!$session->has('basket')) {
-            $session->set('basket', array());
-        }
-        $basket = $session->get('basket');
-        if (!array_key_exists($id, $basket)) {
-            $basket[$id] = 0;
-        }
-        $basket[$id] = $basket[$id] + 1;
-        $session->set('basket', $basket);
-        
-        
-        
-        $product_repository = $this
-                      ->getDoctrine()
-                      ->getManager()
-                      ->getRepository('ProductBundle:Product');
-
-        $listProducts = $product_repository->findById($id);
-        
-        
-        return $this->render('ProductBundle:Default:basket.html.twig',
-                array('basket' => $session->get('basket')));
-    }
-    
-    public function basketAction(Request $request)
-    {
-        $session = $request->getSession();
-        if (!$session->has('basket')) {
-            $session->set('basket', array());
-        }
-        $basket = $session->get('basket');
-        
-        return $this->render('ProductBundle:Default:basket.html.twig',
-                array('basket' => $basket));
-    }
-    
-    
+      
     public function addProductAction(Request $request)
     {
         $product = new Product();

@@ -2,11 +2,16 @@
 
 {% block body %}
     
-This is your basket :
-    <ul>
-    {% for product, quantity in basket %}
-        <li> {{ product }} / {{ quantity }}</li>
-    {% endfor %}
-    </ul>
+    {% if productList is empty %}
+        <p>Your basket is empty</p>
+    {% else %}
+        <p>This is your basket :</p>
+        <ul>
+        {% for product in productList %}
+            <li> {{ product.category.name }} {{ product.name }} {{ product.price}} x {{ quantity[product.id] }} </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+   
 {% endblock %}
 
