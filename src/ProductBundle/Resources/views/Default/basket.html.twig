@@ -7,10 +7,13 @@
     {% else %}
         <p>This is your basket :</p>
         <ul>
+        {% set total  = 0 %}
         {% for product in productList %}
-            <li> {{ product.category.name }} {{ product.name }} {{ product.price}} x {{ quantity[product.id] }} </li>
+            {% set total = total + product.price %} 
+            <li> {{ product.category.name }} {{ product.name }} {{ product.price}}$  (x {{ quantity[product.id] }}) </li>
         {% endfor %}
         </ul>
+        <p>Total {{ total }}$</p>
     {% endif %}
    
 {% endblock %}

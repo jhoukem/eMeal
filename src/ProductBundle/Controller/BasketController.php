@@ -21,21 +21,9 @@ class BasketController extends Controller
             $basket[$id] = 0;
         }
         $basket[$id] = $basket[$id] + 1;
-        $session->set('basket', $basket);
-        
-        
-        
-        $product_repository = $this
-                      ->getDoctrine()
-                      ->getManager()
-                      ->getRepository('ProductBundle:Product');
-        
-        $productList = $product_repository->findById(array_keys($basket));
+        $session->set('basket', $basket);   
              
-        return $this->render('ProductBundle:Default:basket.html.twig',
-                array('productList' => $productList,
-                      'quantity' => $basket
-                ));
+         return $this->redirectToRoute('product_basket');      
     }
     
     public function basketAction(Request $request)
@@ -52,9 +40,7 @@ class BasketController extends Controller
         $product_repository = $em->getRepository('ProductBundle:Product');   
         
         //$productList = $product_repository->findById(array_keys($basket));
-        $productList = $product_repository->getProductList(array_keys($basket));
-        
-        dump($productList);
+        $productList = $product_repository->getProductListWithCategory(array_keys($basket));
         
         return $this->render('ProductBundle:Default:basket.html.twig',
                 array('productList' => $productList,

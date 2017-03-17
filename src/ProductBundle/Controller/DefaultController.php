@@ -21,32 +21,32 @@ class DefaultController extends Controller
         return $this->render('ProductBundle:Default:index.html.twig');
     }
     
-    public function menuAction()
-    {
+    public function menuAction(Request $request)
+    {               
         $product_repository = $this
                       ->getDoctrine()
                       ->getManager()
                       ->getRepository('ProductBundle:Product');
 
-        $listProducts = $product_repository->findAll();
+        $listProducts = $product_repository->getProductListComplete();
              
         return $this->render('ProductBundle:Default:menu.html.twig',
                 array('listProducts' => $listProducts
-                    ));
+                ));
     }
-
-    public function viewAction()
-    {
+    
+    public function menuNavBarAction(Request $request)
+    {          
         $product_repository = $this
                       ->getDoctrine()
                       ->getManager()
                       ->getRepository('ProductBundle:Product');
 
-        $listProducts = $product_repository->findAll();
+        $listProducts = $product_repository->getProductListComplete();
              
-        return $this->render('ProductBundle:Default:view.html.twig',
+        return $this->render('ProductBundle:Default:listProducts.html.twig',
                 array('listProducts' => $listProducts
-                    ));
+                ));
     }
       
     public function addProductAction(Request $request)
