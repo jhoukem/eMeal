@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="e_meal_order")
  * @ORM\Entity(repositoryClass="ProductBundle\Repository\eMealOrderRepository")
  */
-class eMealOrder
-{
+class eMealOrder {
+
     /**
      * @var int
      *
@@ -21,18 +21,18 @@ class eMealOrder
      */
     private $id;
 
-   /**
+    /**
      *
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $owner;
-    
+
     /**
      * @ORM\ManyToMany(targetEntity="ProductBundle\Entity\Product", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
-    private $productList; 
+    private $productsList;
 
     /**
      * @var \DateTime
@@ -41,20 +41,17 @@ class eMealOrder
      */
     private $date;
 
-    public function __construct()
-    {
+    public function __construct() {
         // Par défaut, la date de l'annonce est la date d'aujourd'hui
         $this->date = new \Datetime();
     }
-    
-    
+
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -65,8 +62,7 @@ class eMealOrder
      *
      * @return eMealOrder
      */
-    public function setOwner($owner)
-    {
+    public function setOwner($owner) {
         $this->owner = $owner;
 
         return $this;
@@ -77,8 +73,7 @@ class eMealOrder
      *
      * @return \stdClass
      */
-    public function getOwner()
-    {
+    public function getOwner() {
         return $this->owner;
     }
 
@@ -89,8 +84,7 @@ class eMealOrder
      *
      * @return eMealOrder
      */
-    public function setProductsList($productsList)
-    {
+    public function setProductsList($productsList) {
         $this->productsList = $productsList;
 
         return $this;
@@ -101,8 +95,7 @@ class eMealOrder
      *
      * @return array
      */
-    public function getProductsList()
-    {
+    public function getProductsList() {
         return $this->productsList;
     }
 
@@ -113,8 +106,7 @@ class eMealOrder
      *
      * @return eMealOrder
      */
-    public function setDate($date)
-    {
+    public function setDate($date) {
         $this->date = $date;
 
         return $this;
@@ -125,36 +117,36 @@ class eMealOrder
      *
      * @return \DateTime
      */
-    public function getDate()
-    {
+    public function getDate() {
         return $this->date;
     }
-    
+
     /**
      * Get price
      *
      * @return price
      */
-    public function getPrice()
-    {
+    public function getPrice() {
         $price = 0;
-        foreach($this->getProductsList() as $product) {
+        foreach ($this->getProductsList() as $product) {
             $price += $product->getPrice();
         }
-        
+
         return $price;
     }
-    
-     public function toString()
-     {
-         $output = "Order: ";
-         //$output += date;
-        foreach($this->getProductsList() as $product) {
-            $output += $product->getName();
 
+    public function toString() {
+        $output = $this->getDate()->format("\T\h\\e j/n/Y \a\\t G\h:i") . ": ";
+
+        $output .= "Order n°" . $this->getId(). ": ";
+
+        foreach ($this->getProductsList() as $product) {
+            $output .= ($product->getCategory()->getName() ." ". $product->getName() . ", ");
         }
-         
-         return $output;
-     }
-}
 
+        $output .= "Total = " . $this->getPrice() . "$";
+
+        return $output;
+    }
+
+}
