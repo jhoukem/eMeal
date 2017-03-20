@@ -31,6 +31,10 @@ basket_add:
 emeal_order:
     path:     /order
     defaults: { _controller: ProductBundle:Order:myOrder }
+   
+emeal_order_all:
+    path:     /all_order
+    defaults: { _controller: ProductBundle:Order:allOrder }
     
 emeal_order_add:
     path:     /order_add

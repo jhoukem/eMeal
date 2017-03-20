@@ -9,11 +9,17 @@
         <ul>
         {% set total  = 0 %}
         {% for product in productList %}
-            {% set total = total + product.price %} 
-            <li> {{ product.category.name }} {{ product.name }} {{ product.price}}$  (x {{ quantity[product.id] }}) </li>
+            {% set total = total + (product.price * quantity[product.id]) %} 
+            <li> {{ product.category.name }} {{ product.name }} {{ product.price }}$  (x {{ quantity[product.id] }}) 
+            
+            {# <a class='basket_add_one btn btn-primary' href="{{ path('emeal_order_add') }}">Add one</a>
+             <a class='basket_rm_one btn btn-primary' href="{{ path('emeal_order_add') }}">Remove one</a>
+             #}
+            </li>
         {% endfor %}
         </ul>
         <p>Total {{ total }}$</p>
+        <a class='basket_add btn btn-primary' href="{{ path('emeal_order_add') }}">Order</a>
     {% endif %}
    
 {% endblock %}

@@ -39,7 +39,6 @@ class BasketController extends Controller
         $basket =  $session->get('basket');
         $product_repository = $em->getRepository('ProductBundle:Product');   
         
-        //$productList = $product_repository->findById(array_keys($basket));
         $productList = $product_repository->getProductListWithCategory(array_keys($basket));
         
         return $this->render('ProductBundle:Default:basket.html.twig',
