@@ -44,23 +44,29 @@ class OrderController extends Controller {
                 }
             }
         }
-        //
-        return $this->redirectToRoute('emeal_order');
+      
+        return $this->redirectToRoute('fos_user_registration_register');
     }
 
     public function myOrderAction() {
 
         $securityContext = $this->container->get('security.authorization_checker');
+       
         if ($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
 
             $em = $this->getDoctrine()->getManager();
             $order_repository = $em->getRepository('ProductBundle:eMealOrder');
 
             $listOrder = $order_repository->findByOwner($this->getUser());
+            
+            return $this->render('ProductBundle:Default:order.html.twig', array('listOrder' => $listOrder
+            ));
+            
+        } else {
+            return $this->redirectToRoute('fos_user_registration_register');
         }
 
-        return $this->render('ProductBundle:Default:order.html.twig', array('listOrder' => $listOrder
-        ));
+        
     }
 
     public function allOrderAction() {
