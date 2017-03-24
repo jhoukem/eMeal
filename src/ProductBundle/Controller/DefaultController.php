@@ -15,80 +15,40 @@ use ProductBundle\Entity\Ingredient;
 
 class DefaultController extends Controller
 {
+    
     public function indexAction()
     {
         return $this->render('ProductBundle:Default:index.html.twig');
     }
     
-    public function menuAction()
-    {
+    public function menuAction(Request $request)
+    {               
         $product_repository = $this
                       ->getDoctrine()
                       ->getManager()
                       ->getRepository('ProductBundle:Product');
 
-        $listProducts = $product_repository->findAll();
+        $listProducts = $product_repository->getProductListComplete();
              
         return $this->render('ProductBundle:Default:menu.html.twig',
                 array('listProducts' => $listProducts
-                    ));
+                ));
     }
-
-    public function viewAction()
-    {
+    
+    public function menuNavBarAction(Request $request)
+    {          
         $product_repository = $this
                       ->getDoctrine()
                       ->getManager()
                       ->getRepository('ProductBundle:Product');
 
-        $listProducts = $product_repository->findAll();
+        $listProducts = $product_repository->getProductListComplete();
              
-        return $this->render('ProductBundle:Default:view.html.twig',
+        return $this->render('ProductBundle:Default:listProducts.html.twig',
                 array('listProducts' => $listProducts
-                    ));
+                ));
     }
-    
-    public function addToBasketAction($id, Request $request)
-    {
-        $session = $request->getSession();
-        
-        if (!$session->has('basket')) {
-            $session->set('basket', array());
-        }
-        $basket = $session->get('basket');
-        if (!array_key_exists($id, $basket)) {
-            $basket[$id] = 0;
-        }
-        $basket[$id] = $basket[$id] + 1;
-        $session->set('basket', $basket);
-        
-        
-        
-        $product_repository = $this
-                      ->getDoctrine()
-                      ->getManager()
-                      ->getRepository('ProductBundle:Product');
-
-        $listProducts = $product_repository->findById($id);
-        
-        
-        return $this->render('ProductBundle:Default:basket.html.twig',
-                array('basket' => $session->get('basket')));
-    }
-    
-    public function basketAction(Request $request)
-    {
-        $session = $request->getSession();
-        if (!$session->has('basket')) {
-            $session->set('basket', array());
-        }
-        $basket = $session->get('basket');
-        
-        return $this->render('ProductBundle:Default:basket.html.twig',
-                array('basket' => $basket));
-    }
-    
-    
+      
     public function addProductAction(Request $request)
     {
         $product = new Product();

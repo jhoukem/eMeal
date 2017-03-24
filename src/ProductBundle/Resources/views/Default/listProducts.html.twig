@@ -1,6 +1,3 @@
-<ul class="nav nav-pills nav-stacked">
-<p>The day menu :</p>
-
 {% for product in listProducts %}
     <li>
         {{ product.category.name }} {{ product.name }}:  {{ product.price }} dollars. 
@@ -18,4 +15,3 @@
         <a class='basket_add btn btn-primary' href="{{ path('basket_add', { 'id':product.id }) }}">Add to basket</a>
     </li>
 {% endfor %}
-</ul>

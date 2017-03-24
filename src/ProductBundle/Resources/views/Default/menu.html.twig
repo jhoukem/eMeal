@@ -1,25 +1,10 @@
-
 {% extends "::layout.html.twig" %}
 
 {%block body %}
-
+    
 <p>The day menu :</p>
 
-{% for product in listProducts %}
-    <li>
-        {{ product.category.name }} {{ product.name }}:  {{ product.price }} dollars. 
-        
-        {%if product.ingredients is not empty%}
-        (
-        {%for ingredient in product.ingredients %}
-            {{  ingredient.name }}
-            {% if not loop.last %}
-            ,
-            {% endif %}
-        {% endfor %}
-        )       
-        {% endif %}       
-        <a class='basket_add btn btn-primary' href="{{ path('basket_add', { 'id':product.id }) }}">Add to basket</a>
-    </li>
-{% endfor %}
+{{ include("ProductBundle:Default:listProducts.html.twig") }}
+
+
 {% endblock %}
