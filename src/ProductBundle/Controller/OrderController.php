@@ -11,12 +11,12 @@ class OrderController extends Controller {
     public function indexAction() {
         return $this->render('ProductBundle:Default:index.html.twig');
     }
+    
 
     public function orderAddAction(Request $request) {
         $securityContext = $this->container->get('security.authorization_checker');
 
         if ($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-
 
             $session = $request->getSession();
 
@@ -44,14 +44,13 @@ class OrderController extends Controller {
                 }
             }
         }
-
+        //
         return $this->redirectToRoute('emeal_order');
     }
 
     public function myOrderAction() {
 
         $securityContext = $this->container->get('security.authorization_checker');
-        $listOrder = null;
         if ($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
 
             $em = $this->getDoctrine()->getManager();
@@ -74,10 +73,12 @@ class OrderController extends Controller {
         $securityContext = $this->container->get('security.authorization_checker');
         if ($securityContext->isGranted('ROLE_ADMIN')) {
             $listOrder = $order_repository->findAll();
-        }
-
-        return $this->render('ProductBundle:Default:order.html.twig', array('listOrder' => $listOrder
+            return $this->render('ProductBundle:Default:order.html.twig', array('listOrder' => $listOrder
         ));
+        } else {
+           return $this->redirectToRoute('not_found');     
+        }
+        
     }
-
+          
 }

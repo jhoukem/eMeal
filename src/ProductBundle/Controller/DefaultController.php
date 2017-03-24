@@ -16,9 +16,14 @@ use ProductBundle\Entity\Ingredient;
 class DefaultController extends Controller
 {
     
-    public function indexAction()
+     public function indexAction()
     {
         return $this->render('ProductBundle:Default:index.html.twig');
+    }
+    
+    public function notFoundAction()
+    {
+        return $this->render('ProductBundle:Default:not_found.html.twig');
     }
     
     public function menuAction(Request $request)

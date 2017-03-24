@@ -2,10 +2,6 @@ product:
     resource: "@ProductBundle/Resources/config/routing.yml"
     prefix:   /
 
-user:
-    resource: "@UserBundle/Resources/config/routing.yml"
-    prefix:   /user
-
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 

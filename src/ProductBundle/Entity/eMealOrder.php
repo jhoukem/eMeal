@@ -141,7 +141,7 @@ class eMealOrder {
         $output .= "Order n°" . $this->getId(). ": ";
 
         foreach ($this->getProductsList() as $product) {
-            $output .= ($product->getCategory()->getName() ." ". $product->getName() . ", ");
+            $output .= ($product->getCategory()->getName() ." ". $product->getName() . "(x". $product->quantity."), ");
         }
 
         $output .= "Total = " . $this->getPrice() . "$";

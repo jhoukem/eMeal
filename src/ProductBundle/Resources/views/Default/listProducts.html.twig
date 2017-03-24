@@ -5,7 +5,7 @@
         {%if product.ingredients is not empty%}
         (
         {%for ingredient in product.ingredients %}
-            {{  ingredient.name }}
+            {{ingredient.name}}
             {% if not loop.last %}
             ,
             {% endif %}

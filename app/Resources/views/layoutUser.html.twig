@@ -16,37 +16,10 @@
 </head>
 <body>
   {{ include("::navbar.html.twig") }}
-
-  <div class="container">
-    <div id="header" class="jumbotron">
-      <h1>Emeal</h1>
-     <p>
-        Ici que du bon MIAM MIAM Version local guadeloupe
-      </p>
-      <p>
-        BOKITS / PIZZA / AGOULOUS / CRÊPES
-      </p>
-    </div>
-    <div class="row ">
-      <div id="menu" class="col-md-3">
-        <h3>Nouveautés</h3>
-         <ul class="nav nav-pills nav-stacked">
-        {{ render(controller("ProductBundle:Default:menuNavBar", {'limit': 5})) }}               
-         </ul>
-
-      </div>
-      <div id="content" class="col-md-9">
+  <hr><hr>
         {% block body %}
         {% endblock %}
-      </div>
-    </div>
-
-    <hr>
-
-    <footer>
-      <p>The sky's the limit © {{ 'now'|date('Y') }} and beyond.</p>
-    </footer>
-  </div>
+    
 
   {% block javascripts %}
     {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}

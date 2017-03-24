@@ -39,4 +39,7 @@ emeal_order_all:
 emeal_order_add:
     path:     /order_add
     defaults: { _controller: ProductBundle:Order:orderAdd }
-        
+    
+not_found:
+    path:     /not_found
+    defaults: { _controller: ProductBundle:Default:notFound }
