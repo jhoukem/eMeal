@@ -19,8 +19,15 @@
                 <li id='nav-btn-basket'><a href="{{ path('product_basket') }}">Basket</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li id='nav-btn-login'><a href="{{ path('fos_user_security_login') }}">Log in</a></li>
-                <li id='nav-btn-sign-in'><a href="{{ path('fos_user_registration_register') }}">Sign in</a></li> 
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                   {#} Connecté en tant que {{ app.user.username }}
+                    -#}
+                    <li id='nav-btn-profile'><a href="{{ path('fos_user_profile_show') }}">{{ app.user.username }}</a></li>
+                     <li id='nav-btn-logout'><a href="{{ path('fos_user_security_logout') }}">Logout</a></li> 
+                {% else %}
+                    <li id='nav-btn-login'><a href="{{ path('fos_user_security_login') }}">Log in</a></li>
+                    <li id='nav-btn-sign-in'><a href="{{ path('fos_user_registration_register') }}">Sign in</a></li> 
+                {% endif %}
             </ul>
             <form class="navbar-form navbar-left" role="search">
                 <div class="form-group">
