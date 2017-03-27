@@ -11,15 +11,44 @@
   {% block stylesheets %}
     {# On charge le CSS de bootstrap depuis le site directement #}
     <link rel="stylesheet" href="{{asset('bootstrap-3.3.7-dist/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-responsive.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}" />
   {% endblock %}
   <link rel="icon" type="image/x-icon" href="{{ asset('eMeal.png') }}" />
 </head>
 <body>
   {{ include("::navbar.html.twig") }}
-  <hr><hr>
+  
         {% block body %}
         {% endblock %}
-    
+    <footer id="footer" class="vspace20">
+            <div class="container">
+                <div class="row">
+                    <div class="span4 offset1">
+                        <h4>Informations</h4>
+                        
+                    </div> 
+
+                    <div class="span4">
+                        <h4>Notre entrepôt</h4>
+                       
+                    </div>
+
+                    <div class="span2">
+                        <h4>Nous contacter</h4>
+                   
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="span4">
+                        <p>&copy; Copyright {{ "now"|date('Y') }} - Emeal</p>
+                    </div>
+                </div>
+            </div>
+        </footer> 
 
   {% block javascripts %}
     {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}

@@ -2,8 +2,6 @@
 
 <div class="row">
     <div class="span12">
-         <hr>
-          <hr>
         <h2>Inscription</h2>
         <div id="collapseOne" class="accordion-body collapse in">
             <div class="accordion-inner">
@@ -17,12 +15,11 @@
 
                 <div class="span4 offset2">
                     <h4>Inscription</h4>
-                    <form action="{{ path('fos_user_registration_register') }}" method="POST" class="fos_user_registration_register">
-                        {{ form_start(form) }}
-                        {{ form_end(form) }}
+                    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+                        {{ form_widget(form) }}
                         <br />
                         <input class="btn btn-primary" type="submit" value="{{ 'registration.submit'|trans }}" />
-                    </form>
+                    {{ form_end(form) }}
                 </div>
             </div>
         </div>

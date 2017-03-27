@@ -2,52 +2,91 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+      <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>{% block title %}Emeal{% endblock %}</title>
+          <title>{% block title %}Emeal{% endblock %}</title>
 
-  {% block stylesheets %}
-    {# On charge le CSS de bootstrap depuis le site directement #}
-    <link rel="stylesheet" href="{{asset('bootstrap-3.3.7-dist/css/bootstrap.min.css')}}">
-  {% endblock %}
-  <link rel="icon" type="image/x-icon" href="{{ asset('eMeal.png') }}" />
-</head>
-<body>
-  {{ include("::navbar.html.twig") }}
+          {% block stylesheets %}
+              {# On charge le CSS de bootstrap depuis le site directement #}
+              <link rel="stylesheet" href="{{asset('bootstrap-3.3.7-dist/css/bootstrap.min.css')}}">
+              <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" />
+              <link rel="stylesheet" href="{{ asset('css/bootstrap-responsive.css') }}" />
+              <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+              <link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}" />
+          {% endblock %}
+  
+          <link rel="icon" type="image/x-icon" href="{{ asset('eMeal.png') }}" />
+    </head>
+    
+    <body>
+        {{ include("::navbar.html.twig") }}
 
-  <div class="container">
-    <div id="header" class="jumbotron">
-      <h1>Emeal</h1>
-     <p>
-        Ici que du bon MIAM MIAM Version local guadeloupe
-      </p>
-      <p>
-        BOKITS / PIZZA / AGOULOUS / CRÊPES
-      </p>
-    </div>
-    <div class="row ">
-      <div id="menu" class="col-md-3">
-        <h3>Nouveautés</h3>
-         <ul class="nav nav-pills nav-stacked">
-        {{ render(controller("ProductBundle:Default:menuNavBar", {'limit': 5})) }}               
-         </ul>
-
+        <div class="container">
+              <div id="header" class="jumbotron">
+                  <h1>Emeal</h1>
+                  <p>
+                      Ici que du bon MIAM MIAM Version local guadeloupe
+                  </p>
+                  <p>
+                      BOKITS / PIZZA / AGOULOUS / CRÊPES
+                  </p>
+              </div>
+          <div class="row ">
+              <div id="menu" class="col-md-3">
+         
+                  {% if is_granted("ROLE_ADMIN") %}
+                      {# Connecté en tant que {{ app.user.username }}
+                      -#}
+                      <h3>Menu</h3>
+                      <ul class="nav nav-pills nav-stacked">
+                          <li><a href="{{ path('category_add') }}">Ajouter une catégorie</a></li>
+                          <li><a href="{{ path('product_add') }}">Ajouter un produit</a></li>
+                          <li><a href="{{ path('ingredient_add') }}">Ajouter un ingredient</a></li>             
+                      </ul>
+                {% else %}
+                       <h3>Nouveautés</h3>
+                       <ul class="nav nav-pills nav-stacked">
+                          {{ render(controller("ProductBundle:Default:menuNavBar", {'limit': 5})) }}               
+                       </ul>
+                {% endif %}
+              </div>
+      
+              <div id="content" class="col-md-9">
+                {% block body %}
+                {% endblock %}
+              </div>
+          </div>    
       </div>
-      <div id="content" class="col-md-9">
-        {% block body %}
-        {% endblock %}
-      </div>
-    </div>
-
     <hr>
 
-    <footer>
-      <p>The sky's the limit © {{ 'now'|date('Y') }} and beyond.</p>
-    </footer>
-  </div>
+   <footer id="footer" class="vspace20">
+            <div class="container">
+                <div class="row">
+                    <div class="span4 offset1">
+                        <h4>Informations</h4>
+                        
+                    </div> 
 
+                    <div class="span4">
+                        <h4>Notre entrepôt</h4>
+                       
+                    </div>
+
+                    <div class="span2">
+                        <h4>Nous contacter</h4>
+                   
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="span4">
+                        <p>&copy; Copyright {{ "now"|date('Y') }} - Emeal</p>
+                    </div>
+                </div>
+            </div>
+        </footer> 
   {% block javascripts %}
     {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
      <!-- jQuery 3.1.1 -->

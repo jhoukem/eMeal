@@ -148,4 +148,98 @@ class DefaultController extends Controller {
         }
     }
 
+   /* public function deleteIngredientAction($id){
+
+            $securityContext = $this->container->get('security.authorization_checker');
+
+        if ($securityContext->isGranted('ROLE_ADMIN')) {
+            $em = $this->getDoctrine()->getManager();
+            
+            // Notre ingredient
+            $ingredient = $em->getRepository('ProductBundle:Ingredient')->find($id);
+            
+            $em->remove($ingredient);
+            $em->flush();
+            
+            return $this->redirectToRoute('product_menu');
+        }
+        else {
+            return $this->redirectToRoute('not_found');
+        }    
+    }
+
+    public function deleteProductAction($id){
+
+            $securityContext = $this->container->get('security.authorization_checker');
+
+        if ($securityContext->isGranted('ROLE_ADMIN')) {
+            $em = $this->getDoctrine()->getManager();
+            
+            // Notre ingredient
+            $ingredient = $em->getRepository('ProductBundle:Category')->find($id);
+            
+            $em->remove($ingredient);
+            $em->flush();
+            
+            return $this->redirectToRoute('product_menu');
+        }
+        else {
+            return $this->redirectToRoute('not_found');
+        }    
+    }
+
+    public function deleteCategoryAction($id){
+
+            $securityContext = $this->container->get('security.authorization_checker');
+
+        if ($securityContext->isGranted('ROLE_ADMIN')) {
+            $em = $this->getDoctrine()->getManager();
+            
+            // Notre ingredient
+            $ingredient = $em->getRepository('ProductBundle:Category')->find($id);
+            
+            $em->remove($ingredient);
+            $em->flush();
+            
+            return $this->redirectToRoute('product_menu');
+        }
+        else {
+            return $this->redirectToRoute('not_found');
+        }    
+    }
+
+
+     public function editIngredientAction($id, Request $request){
+
+            $securityContext = $this->container->get('security.authorization_checker');
+
+        if ($securityContext->isGranted('ROLE_ADMIN')) {
+
+
+            $ingredient = new Ingredient();
+            $form = $this->createForm(IngredientType::class, $ingredient);
+
+            if ($request->isMethod('POST')) {
+
+                $form->handleRequest($request);
+
+                if ($form->isValid()) {
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($ingredient);
+                    $em->flush();
+                    $request->getSession()->getFlashBag()->add('notice', 'The ingredient has been edited correctly.');
+                } else {
+                    $request->getSession()->getFlashBag()->add('notice', 'Error the ingredient has not been edited.');
+                }
+
+                return $this->redirectToRoute('product_menu');
+            }
+
+            return $this->render('ProductBundle:Default:editIngredient.html.twig', array(
+                        'form' => $form->createView()));
+        } else {
+            return $this->redirectToRoute('not_found');
+        }    
+    }
+*/
 }
